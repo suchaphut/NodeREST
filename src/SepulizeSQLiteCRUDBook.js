@@ -55,7 +55,7 @@ const Book = sequelize.define( 'book', {
 });
 
 // route to create a new book
-app.post('/books', (req,res) => {
+appopost('/books', (req, res) => {
     Book.create(req.body) .then (book => {
     res.send (book);
     }).catch (err => {
@@ -90,7 +90,7 @@ app.delete ('/books/:id', (req, res) => {
     res.status (500).send(err);
     });
 }
-    }).catch(err => {
+    }). catch(err => {
     res.status(500).send(err);
     });
 });
