@@ -1,7 +1,3 @@
-// Description: Node Express REST API with Sequelize and SQLite CRUD Book
-// npm install express sequelize sqlite3
-// Run this file with node SequlizeSQLiteCRUDBook.js
-// Test with Postman
 const express = require('express');
 const Sequelize = require('sequelize');
 const app = express();
@@ -38,7 +34,8 @@ app.get('/books', (req, res) => {
   Book.findAll().then(books => {
     res.json(books);
   }).catch(err => {
-    res.status(500).send(err);
+    console.error(err); // แสดงข้อผิดพลาดใน Console
+    res.status(500).send('Internal Server Error');
   });
 });
 // route to get a book by id
@@ -50,7 +47,8 @@ app.get('/books/:id', (req, res) => {
       res.json(book);
     }
   }).catch(err => {
-    res.status(500).send(err);
+    console.error(err); // แสดงข้อผิดพลาดใน Console
+    res.status(500).send('Internal Server Error');
   });
 });
 
@@ -59,7 +57,8 @@ app.post('/books', (req, res) => {
   Book.create(req.body).then(book => {
     res.send(book);
   }).catch(err => {
-    res.status(500).send(err);
+    console.error(err); // แสดงข้อผิดพลาดใน Console
+    res.status(500).send('Internal Server Error');
   });
 });
 // route to update a book
@@ -71,11 +70,13 @@ app.put('/books/:id', (req, res) => {
       book.update(req.body).then(() => {
         res.send(book);
       }).catch(err => {
-        res.status(500).send(err);
+        console.error(err); // แสดงข้อผิดพลาดใน Console
+        res.status(500).send('Internal Server Error');
       });
     }
   }).catch(err => {
-    res.status(500).send(err);
+    console.error(err); // แสดงข้อผิดพลาดใน Console
+    res.status(500).send('Internal Server Error');
   });
 });
 // route to delete a book
@@ -87,13 +88,16 @@ app.delete('/books/:id', (req, res) => {
       book.destroy().then(() => {
         res.send({});
       }).catch(err => {
-        res.status(500).send(err);
+        console.error(err); // แสดงข้อผิดพลาดใน Console
+        res.status(500).send('Internal Server Error');
       });
     }
   }).catch(err => {
-    res.status(500).send(err);
+    console.error(err); // แสดงข้อผิดพลาดใน Console
+    res.status(500).send('Internal Server Error');
   });
 });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
+
